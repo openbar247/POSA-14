@@ -1,5 +1,3 @@
-// Import the necessary Java synchronization and scheduling classes.
-
 package edu.vuum.mocca;
 
 import java.util.concurrent.locks.ReentrantReadWriteLock;
@@ -22,16 +20,20 @@ class SimpleAtomicLong
     /**
      * The ReentrantReadWriteLock used to serialize access to mValue.
      */
-    // TODO - replace the null with the appropriate initialization:
-    private ReentrantReadWriteLock mRWLock = null;
+
+    // TODO -- you fill in here by replacing the null with an
+    // initialization of ReentrantReadWriteLock.
+    private final ReentrantReadWriteLock mRWLock = new ReentrantReadWriteLock();
+    private final Lock rlock = mRWLock.readLock();
+    private final Lock wlock = mRWLock.writeLock();
 
     /**
      * Creates a new SimpleAtomicLong with the given initial value.
      */
     public SimpleAtomicLong(long initialValue)
     {
-        long value = 0;
-        // TODO - you fill in here
+        // TODO -- you fill in here
+        this.mValue = initialValue;
     }
 
     /**
@@ -41,8 +43,19 @@ class SimpleAtomicLong
      */
     public long get()
     {
-        long value = 0;
-        // TODO - you fill in here, using a readLock()
+        long value;
+
+        // TODO -- you fill in here
+        rlock.lock();
+        try
+        {
+            value = mValue;
+        }
+        finally
+        {
+            rlock.unlock();
+        }
+            
         return value;
     }
 
@@ -54,7 +67,18 @@ class SimpleAtomicLong
     public long decrementAndGet()
     {
         long value = 0;
-        // TODO - you fill in here, using a writeLock()
+
+        // TODO -- you fill in here
+        wlock.lock();
+        try
+        {
+            value = --mValue;
+        }
+        finally
+        {
+            wlock.unlock();
+        }
+
         return value;
     }
 
@@ -66,7 +90,18 @@ class SimpleAtomicLong
     public long getAndIncrement()
     {
         long value = 0;
-        // TODO - you fill in here, using a writeLock()
+
+        // TODO -- you fill in here
+        wlock.lock();
+        try
+        {
+            value = mValue++;
+        }
+        finally
+        {
+            wlock.unlock();
+        }
+
         return value;
     }
 
@@ -78,7 +113,18 @@ class SimpleAtomicLong
     public long getAndDecrement()
     {
         long value = 0;
-        // TODO - you fill in here, using a writeLock()
+
+        // TODO -- you fill in here
+        wlock.lock();
+        try
+        {
+            value = mValue--;
+        }
+        finally
+        {
+            wlock.unlock();
+        }
+
         return value;
     }
 
@@ -90,7 +136,18 @@ class SimpleAtomicLong
     public long incrementAndGet()
     {
         long value = 0;
-        // TODO - you fill in here, using a writeLock()
+
+        // TODO -- you fill in here
+        wlock.lock();
+        try
+        {
+            value = ++mValue;
+        }
+        finally
+        {
+            wlock.unlock();
+        }
+
         return value;
     }
 }
