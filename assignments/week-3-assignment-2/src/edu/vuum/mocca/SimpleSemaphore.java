@@ -23,7 +23,7 @@ public class SimpleSemaphore {
      * Define a ConditionObject to wait while the number of permits is 0.
      */
     // TODO - you fill in here
-    Condition isPermitCountZero;
+    private final Condition isPermitCountZero;
     /**
      * Define a count of the number of available permits.
      */
