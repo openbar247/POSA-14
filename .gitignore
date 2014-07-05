@@ -80,3 +80,5 @@ proguard/
 # Temp files for KDE and other Editor's 
 *~
 
+/assignments/week-5-assignment-4/W5-A4-Android/nbandroid/
+/assignments/week-6-assignment-5/W6-A5-ThreadedDownloads-StartedServices/nbandroid/
